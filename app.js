@@ -6,7 +6,7 @@ routes = require('./routes'),
 mongoose = require('mongoose');
 //MongoStore = require('connect-mongo')(express);
 
-mongoose.connect('mongodb://localhost/randomstuffwhey');
+mongoose.connect('mongodb://heroku_app18637158:i1baho1d5aatm5nl20kse5cnta@ds049538.mongolab.com:49538/heroku_app18637158');
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
