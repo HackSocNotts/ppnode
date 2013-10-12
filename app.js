@@ -18,7 +18,7 @@ app.get('/toilets', routes.toilets);
 app.get('/popdb', routes.popdb);
 app.get('/getAllToilets', routes.getAllToilets);
 
-app.listen(3000, function(){
+app.listen(process.env.PORT || 3000, function(){
     console.log("Server started on port %d", app.address().port);
     var db = mongoose.connection;
     db.on('error', console.error.bind(console, 'connection error:'));
