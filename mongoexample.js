@@ -6,7 +6,7 @@ routes = require('./routes'),
 mongoose = require('mongoose');
 //MongoStore = require('connect-mongo')(express);
 
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://localhost/randomstuffwhey');
 
 var app = module.exports = express.createServer();
 
