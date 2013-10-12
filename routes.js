@@ -21,6 +21,9 @@ exports.popdb = function(req, res){
     Toilet.remove({}, function(err) { 
 	console.log('collection removed') 
     });
+    Rating.remove({}, function(err) { 
+	console.log('collection removed') 
+    });
     var t1 = new Toilet({id: 1,
 			 name: 'Kudos',
 			 lat: 51.5093110,
@@ -67,8 +70,7 @@ exports.popdb = function(req, res){
 	if (err) console.log("Error!");
 	console.log(toilets);
     });
-
-    
+   
     res.writeHead(200, {"Content-Type":"text/plain"});
     res.end();
 }
@@ -79,5 +81,48 @@ exports.getAllToilets = function(req, res) {
 	console.log(toilets);
 	res.json(toilets);
 	res.end();
+    });
+}
+
+exports.addRating = function(req, res) {
+    console.log("tid: " + req.params.tid + " rate: " + req.params.rating);
+
+    var newRating = new Rating({
+	ToiletId: req.params.tid,
+	rating: req.params.rating
+    });
+
+    newRating.save(function(err, fluffy){
+	if (err) {
+	    res.json({response:'sad elijah'});
+	    res.end();
+	} else {
+	    res.json({Response:'success'});
+	    res.end();
+	}
+    });
+}
+
+exports.getRating = function(req, res){
+    Rating.find({ToiletId: req.params.tid}, function(err, ratings){
+	if (err){
+	    res.json({response:'sad elijah'});
+	    res.end();
+	} else {
+	    res.json(ratings);
+	    res.end();
+	}
+    });
+}
+
+exports.getAllRatings = function(req, res){
+    Rating.find(function(err, ratings){
+	if (err){
+	    res.json({response:'sad elijah'});
+	    res.end();
+	} else {
+	    res.json(ratings);
+	    res.end();
+	}
     });
 }
