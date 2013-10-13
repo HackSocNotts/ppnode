@@ -77,7 +77,7 @@ exports.index = function(req, res){
 }
 
 exports.confirm = function(req, res){
-    res.render("index.html");
+    res.render("index");
     //res.write("Success! You\'ve successfully paid via PayPal for your restroom.");
     res.end();
 }
