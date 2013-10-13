@@ -68,7 +68,17 @@ exports.auth = function (req, res) {
 
 exports.index = function(req, res){
     // res.redirect('app://76a2fcad-b666-4354-953b-c8bfc9350fb7/index.html');
-    res.write("<a href='#' onclick='window.location=\"app://76a2fcad-b666-4354-953b-c8bfc9350fb7/index.html\"'>Go back to the app</a>");
+    // res.write("<a href='#' onclick='window.location=\"app://76a2fcad-b666-4354-953b-c8bfc9350fb7/index.html\"'>Go back to the app</a>");
+    // nfc_icon.jpg
+
+    res.write("<a href='confirm'><img src='http://nfctimes.com/sites/default/files/nfc_icon.jpg' /></a>");
+    
+    res.end();
+}
+
+exports.confirm = function(req, res){
+    res.render("index.html");
+    //res.write("Success! You\'ve successfully paid via PayPal for your restroom.");
     res.end();
 }
 
