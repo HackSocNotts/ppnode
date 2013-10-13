@@ -210,7 +210,7 @@ exports.getAllRatings = function(req, res){
 			    Ts[i].rating =
 			    /*toilets[i].rating =*/ counts[i][0] / counts[i][1];
 			}else{
-			    Ts[i].rating = 0;
+			    Ts[i].rating = -1;
 			}
 			    console.log(Ts[i]);
 			
