@@ -19,7 +19,8 @@ app.get('/popdb', routes.popdb);
 app.get('/getAllToilets', routes.getAllToilets);
 app.get('/rating/add/:tid/:rating', routes.addRating); //maybs post
 app.get('/rating/get/:tid', routes.getRating);
-app.get('/rating/getAll', routes.getAllRatings)
+app.get('/rating/getAll', routes.getAllRatings);
+app.get('/login', routes.login);
 
 app.listen(process.env.PORT || 3000, function(){
     console.log("Server started on port %d", app.address().port);

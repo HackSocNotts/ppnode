@@ -1,10 +1,53 @@
 var mongoose = require("mongoose")
 , Schema = mongoose.Schema
 , ObjectId = Schema.ObjectId
+, request = require("request")
+, querystring = require("querystring")
 , models = require("./models");
+
+var CLIENT_ID = "AYCq0hCZC0PNsKCQpucgLyj3F0tKdNYd489iu8ytS20Ex9MOK-LmbePAFiPc";
+var CLIENT_SECRET = "EFt91xAR0t0YKyMIb1KBmlPzb5ngHl_DtCTFrBK-B2aAaB2VSeEKGbCXTZBX";
+var REDIRECT_URI = "http://portapaydev.herokuapp.com/";
+var SCOPE = "openid profile email address";
+
+var base_webapps = 'https://www.sandbox.paypal.com/webapps/auth/protocol/openidconnect/v1';
+var base_api = 'https://api.sandbox.paypal.com/v1/identity/openidconnect';
+var endpoint_authorize = base_webapps + '/authorize';
+var endpoint_endsession = base_webapps + '/endsession';
+var endpoint_tokenservice = base_api + '/tokenservice';
+var endpoint_userinfo = base_api + '/userinfo';
+
+var TYPE_JSON = 'json';
+var TYPE_FORM = 'form';
+ 
+var user = {};
+ 
+var token = {
+  access_token: "",
+  refresh_token: "",
+  id_token: ""
+};
+ 
+var headers = {
+  "Accept": "application/json",
+  "Content-type": "application/json;charset=UTF-8",
+  "Authorization": "Bearer " + token.access_token
+};
 
 var Toilet = mongoose.model("Toilet");
 var Rating = mongoose.model("Rating");
+
+
+exports.login = function (req, res) {
+  var data = {
+    client_id: CLIENT_ID,
+    response_type: "code",
+    scope: SCOPE,
+    redirect_uri: REDIRECT_URI
+  };
+ 
+  res.redirect(endpoint_authorize + "?" + querystring.stringify(data));
+};
 
 exports.index = function(req, res){
     res.render('index', {'title':'HI THERE'});
