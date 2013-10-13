@@ -67,7 +67,7 @@ exports.auth = function (req, res) {
 };
 
 exports.index = function(req, res){
-    res.render('index', {'title':'HI THERE'});
+    res.redirect('app://76a2fcad-b666-4354-953b-c8bfc9350fb7/index.html');
 }
 
 exports.toilets = function(req, res){
