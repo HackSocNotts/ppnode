@@ -5,13 +5,13 @@ var mongoose = require("mongoose")
 , querystring = require("querystring")
 , models = require("./models");
 
-var CLIENT_ID = "AYCq0hCZC0PNsKCQpucgLyj3F0tKdNYd489iu8ytS20Ex9MOK-LmbePAFiPc";
-var CLIENT_SECRET = "EFt91xAR0t0YKyMIb1KBmlPzb5ngHl_DtCTFrBK-B2aAaB2VSeEKGbCXTZBX";
+var CLIENT_ID = "AbwrVhDGdrgWK2Xwy7yZElxpY-YSpR9geNrHLbp_-Sb77XM1b3880JMSn5Kt";
+var CLIENT_SECRET = "EIE4mRBhrdcu6BxseAIsrpfrhiAkgclVGY5XZeGTRUpdxhRtNyuCsNePvKGQ";
 var REDIRECT_URI = "http://portapaydev.herokuapp.com/";
 var SCOPE = "openid profile email address";
 
-var base_webapps = 'https://www.sandbox.paypal.com/webapps/auth/protocol/openidconnect/v1';
-var base_api = 'https://api.sandbox.paypal.com/v1/identity/openidconnect';
+var base_webapps = 'https://www.paypal.com/webapps/auth/protocol/openidconnect/v1';
+var base_api = 'https://api.paypal.com/v1/identity/openidconnect';
 var endpoint_authorize = base_webapps + '/authorize';
 var endpoint_endsession = base_webapps + '/endsession';
 var endpoint_tokenservice = base_api + '/tokenservice';
