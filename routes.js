@@ -45,7 +45,7 @@ exports.login = function (req, res) {
     scope: SCOPE,
     redirect_uri: REDIRECT_URI
   };
- 
+  console.log(endpoint_authorize + "?" + querystring.stringify(data));
   res.redirect(endpoint_authorize + "?" + querystring.stringify(data));
 };
 
