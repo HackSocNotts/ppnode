@@ -70,8 +70,8 @@ exports.index = function(req, res){
     // res.redirect('app://76a2fcad-b666-4354-953b-c8bfc9350fb7/index.html');
     // res.write("<a href='#' onclick='window.location=\"app://76a2fcad-b666-4354-953b-c8bfc9350fb7/index.html\"'>Go back to the app</a>");
     // nfc_icon.jpg
-
-    res.write("<a href='confirm'><img style=\"width:100%\"src='http://nfctimes.com/sites/default/files/nfc_icon.jpg' /></a>");
+    res.render("nfc");
+   // res.write("<a href='confirm'><img style=\"width:100%\"src='http://nfctimes.com/sites/default/files/nfc_icon.jpg' /></a>");
     
     res.end();
 }
