@@ -67,7 +67,9 @@ exports.auth = function (req, res) {
 };
 
 exports.index = function(req, res){
-    res.redirect('app://76a2fcad-b666-4354-953b-c8bfc9350fb7/index.html');
+    // res.redirect('app://76a2fcad-b666-4354-953b-c8bfc9350fb7/index.html');
+    res.write("<a href='app://76a2fcad-b666-4354-953b-c8bfc9350fb7/index.html'>Go back to the app</a>");
+    res.end();
 }
 
 exports.toilets = function(req, res){
