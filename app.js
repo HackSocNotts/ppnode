@@ -21,6 +21,7 @@ app.get('/rating/add/:tid/:rating', routes.addRating); //maybs post
 app.get('/rating/get/:tid', routes.getRating);
 app.get('/rating/getAll', routes.getAllRatings);
 app.get('/login', routes.login);
+app.get('/getAllRatings', routes.getAllRatings);
 
 app.post('/toilets', routes.toilets);
 app.post('/popdb', routes.popdb);

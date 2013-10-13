@@ -49,6 +49,23 @@ exports.login = function (req, res) {
   res.redirect(endpoint_authorize + "?" + querystring.stringify(data));
 };
 
+exports.auth = function (req, res) {
+  var data = {
+    client_id: CLIENT_ID,
+    client_secret: CLIENT_SECRET,
+    grant_type: "authorization_code",
+    code: req.query.code
+  };
+ 
+  doPost(endpoint_tokenservice, data, TYPE_FORM, function (error, response, body) {
+    if (!error) {
+      token = JSON.parse(body);
+      headers.Authorization = "Bearer " + token.access_token;
+      res.redirect("/profile");
+    }
+  });
+};
+
 exports.index = function(req, res){
     res.render('index', {'title':'HI THERE'});
 }
@@ -159,13 +176,56 @@ exports.getRating = function(req, res){
 }
 
 exports.getAllRatings = function(req, res){
-    Rating.find(function(err, ratings){
-	if (err){
+    var jsonRet;
+    var counts = [];
+    Rating.find({}, function(err, ratings){
+      if (err){
 	    res.json({response:'sad elijah'});
 	    res.end();
 	} else {
-	    res.json(ratings);
-	    res.end();
+	    // res.json(ratings);
+	    // jsonRet = ratings;
+	    for(var i = 0; i < ratings.length; i++){
+		if(counts[ratings[i].ToiletId] == undefined){
+		    counts[ratings[i].ToiletId] = [];
+		    counts[ratings[i].ToiletId][0] = 0;
+		    counts[ratings[i].ToiletId][1] = 0;
+		}
+
+		counts[ratings[i].ToiletId][0] += ratings[i].rating;
+		counts[ratings[i].ToiletId][1] += 1;
+		// console.log(counts);
+	    }
+
+	    Toilet.find({}, function(err, toilets){
+		if (err){
+		    res.json({response:'sad elijah'});
+		    // res.end();
+		} else {
+		    var Ts = [];
+		    for(var i = 0; i < toilets.length; i++){
+			//if(counts[i] !== undefined){
+			    Ts[i] = toilets[i].toObject();
+			if(counts[i] !== undefined){
+			    Ts[i].rating =
+			    /*toilets[i].rating =*/ counts[i][0] / counts[i][1];
+			}else{
+			    Ts[i].rating = 0;
+			}
+			    console.log(Ts[i]);
+			
+			//}
+		    }
+		    // console.log("INSIDE:"+counts);
+		    res.json(Ts);
+		    //res.end();
+		}
+		res.end();
+	    });
+	    
+	    // res.end();
 	}
-    });
+  });
+    console.log(counts);
 }
+
