@@ -12,7 +12,6 @@ var ToiletSchema = new mongoose.Schema({
 });
 
 var RatingSchema = new mongoose.Schema({
-    id: Number,
     ToiletId: Number,
     rating: Number
 });
